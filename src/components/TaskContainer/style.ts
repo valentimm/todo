@@ -32,4 +32,33 @@ export const StyleTaskContainer = styled.div`
 
     }
   }
+
+  main {
+    margin-top: 2rem;
+    display: flex;
+    padding: 64px 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    border-top: 1px solid ${({ theme }) => theme['gray-400']};
+
+    h1{
+      color: ${({ theme }) => theme['gray-300']};
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 140%;
+    }
+
+    h2{
+      color: ${({ theme }) => theme['gray-300']};
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 140%;
+    }
+  }
 `
