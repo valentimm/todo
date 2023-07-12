@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/Header";
 import { TaskContainer } from "./components/TaskContainer";
@@ -6,12 +7,52 @@ import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
 
 export function App() {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      content: 'Fazer café',
+      isConcluded: true
+    },
+    {
+      id: 2,
+      content: 'Estudar ReactJS',
+      isConcluded: false
+    },
+    {
+      id: 3,
+      content: 'Estudar React Native',
+      isConcluded: false
+    },
+    {
+      id: 4,
+      content: 'Estudar NodeJS',
+      isConcluded: false
+    },
+  ]);
+  function deleteTask(id: number) {
+    const filteredTasks = tasks.filter(task => task.id !== id);
+    setTasks(filteredTasks);
+  }
+
+  function toggleTaskStatus(id: number) {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          isConcluded: !task.isConcluded,
+        }
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
+  
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle /> 
       <Header />
       <TaskInput />
-      <TaskContainer />
+      <TaskContainer tasks={tasks} onDeleteTask={deleteTask} onToggleTaskStatus={toggleTaskStatus}/>
     </ThemeProvider>
   )
 }
