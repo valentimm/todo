@@ -60,7 +60,7 @@ export function TaskInput() {
           onInvalid={handleTaskTextInvalid}
           required
           />
-        <button type="button">Criar +</button>
+        <button type="submit">Criar +</button>
       </form>
     </StyleTaskInput>
   )

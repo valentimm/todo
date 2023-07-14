@@ -13,21 +13,6 @@ export function App() {
       content: 'Fazer café',
       isConcluded: true
     },
-    {
-      id: 2,
-      content: 'Estudar ReactJS',
-      isConcluded: false
-    },
-    {
-      id: 3,
-      content: 'Estudar React Native',
-      isConcluded: false
-    },
-    {
-      id: 4,
-      content: 'Estudar NodeJS',
-      isConcluded: false
-    },
   ]);
   function deleteTask(id: number) {
     const filteredTasks = tasks.filter(task => task.id !== id);

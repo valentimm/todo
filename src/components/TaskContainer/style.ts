@@ -60,5 +60,10 @@ export const StyleTaskContainer = styled.div`
       font-weight: 400;
       line-height: 140%;
     }
+    img {
+      justify-content: center;
+      align-items: center;
+      margin-left: 42%;
+    }
   }
 `

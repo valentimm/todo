@@ -13,6 +13,49 @@ export const StyleTask = styled.div`
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
   min-height: 4.5rem;
 
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  border: 2px solid ${({ theme }) => theme['blue']};
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.65rem;
+  position: relative; 
+
+  &:hover {
+    background-color: ${({ theme }) => theme['blue-dark']};
+    opacity: 0.8;
+  }
+}
+
+input[type="checkbox"]:checked {
+  background-color: ${({ theme }) => theme['purple-dark']};
+  border-color: ${({ theme }) => theme['purple-dark']};
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  display: none;
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  background-image: url("check.svg");
+  background-size: cover;
+  background-position: center;
+}
+input[type="checkbox"]:checked::before {
+  display: inline-block;
+}
+
   p {
     display: flex;
     align-items: center;
@@ -20,10 +63,14 @@ export const StyleTask = styled.div`
     color: ${({ theme }) => theme['gray-100']};
     text-align: left;
   }
+  input[type="checkbox"]:checked ~ p {
+  text-decoration: line-through;
+}
 
   button {
     display: flex;
     align-items: center;
+    justify-content: center;
     align-self: center;
     background-color: transparent;
     border: none;
@@ -31,12 +78,18 @@ export const StyleTask = styled.div`
     border-radius: 0.5rem;
     width: 1.5rem;
     height: 1.5rem;
-
+    padding: 0.25rem;
+    img{
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.45rem;
+    }
     &:hover {
       background-color: ${({ theme }) => theme['gray-400']};
-    }
-    img svg path {
-      fill: ${({ theme }) => theme['danger']};
+
+      img {
+        filter: brightness(0) invert(1);
+      }
     }
   }
 `
