@@ -66,4 +66,32 @@ export const StyleTaskContainer = styled.div`
       margin-left: 42%;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-left: 0;
+    header {
+      margin-top: 2rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      h1 {
+        margin-bottom: 0.5rem;
+        a {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+    main {
+      margin-top: 1rem;
+      padding: 1rem;
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
+  }
 `

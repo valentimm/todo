@@ -10,4 +10,12 @@ export const StyleHeader = styled.header`
   img {
     width: 7.875rem;
   }
+
+  @media (max-width: 768px) {
+    height: 6.25rem;
+    img {
+      width: 6.375rem;
+      margin-top: -1.5rem;
+    }
+  }
 `

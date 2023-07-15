@@ -42,4 +42,10 @@ export const StyleTaskInput = styled.div`
       background-color: ${({ theme }) => theme['blue']};
     }
   }
+
+  @media (max-width: 768px) {
+    input {
+      width: 14.875rem;
+    }
+  }
 `
