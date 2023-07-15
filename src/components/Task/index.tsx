@@ -8,14 +8,15 @@ interface TaskProps {
   onToggleTaskStatus: (id: number) => void;
 }
 
-export function Task ( { id, content, isConcluded, onDeleteTask, onToggleTaskStatus }: TaskProps) {
+export function Task({ id, content, isConcluded, onDeleteTask, onToggleTaskStatus }: TaskProps) {
+  function handleDeleteTask() {
+    onDeleteTask(id);
+  }
 
-  function handleDeleteTask () {
-    onDeleteTask(id)
+  function toggleTaskStatus() {
+    onToggleTaskStatus(id);
   }
-  function toggleTaskStatus () {
-    onToggleTaskStatus(id)
-  }
+
   return (
     <StyleTask>
       <input type="checkbox" checked={isConcluded} onChange={toggleTaskStatus} />

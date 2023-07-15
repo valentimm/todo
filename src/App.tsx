@@ -6,14 +6,15 @@ import { TaskInput } from "./components/TaskInput";
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
 
+interface Task {
+  id: number;
+  content: string;
+  isConcluded: boolean;
+}
+
 export function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      content: 'Fazer café',
-      isConcluded: true
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+
   function deleteTask(id: number) {
     const filteredTasks = tasks.filter(task => task.id !== id);
     setTasks(filteredTasks);
@@ -32,12 +33,17 @@ export function App() {
     setTasks(updatedTasks);
   }
   
+  function addTask(newTask: Task) {
+    setTasks([...tasks, newTask]);
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle /> 
       <Header />
-      <TaskInput />
-      <TaskContainer tasks={tasks} onDeleteTask={deleteTask} onToggleTaskStatus={toggleTaskStatus}/>
+      <TaskInput onAddTask={addTask} />
+      <TaskContainer tasks={tasks} onDeleteTask={deleteTask} onToggleTaskStatus={toggleTaskStatus} />
     </ThemeProvider>
   )
 }
+

@@ -62,6 +62,7 @@ input[type="checkbox"]:checked::before {
     font-size: 0.875rem;
     color: ${({ theme }) => theme['gray-100']};
     text-align: left;
+    padding: 0 0.25rem;
   }
   input[type="checkbox"]:checked ~ p {
   text-decoration: line-through;
@@ -86,10 +87,13 @@ input[type="checkbox"]:checked::before {
     }
     &:hover {
       background-color: ${({ theme }) => theme['gray-400']};
-
-      img {
-        filter: brightness(0) invert(1);
-      }
+      display: flex;
+      background-image: url("trash-red.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    img {
+      display: none;
+    }
     }
   }
 `

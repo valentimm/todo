@@ -1,53 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyleTaskInput } from "./style";
 
-export function TaskInput() {
-    const [tasks, setTasks] = useState([
-      {
-        id: 1,
-        content: 'Fazer café',
-        isConcluded: true
-      },
-      {
-        id: 2,
-        content: 'Estudar ReactJS',
-        isConcluded: false
-      },
-      {
-        id: 3,
-        content: 'Estudar React Native',
-        isConcluded: false
-      },
-      {
-        id: 4,
-        content: 'Estudar NodeJS',
-        isConcluded: false
-      },
-    ]);
+interface TaskInputProps {
+  onAddTask: (newTask: { id: number; content: string; isConcluded: boolean }) => void;
+}
 
+export function TaskInput({ onAddTask }: TaskInputProps) {
   const [newTaskText, setNewTaskText] = useState('');
 
   function handleCreateNewTask(event: React.FormEvent) {
     event.preventDefault();
 
-    setTasks([...tasks, {
+    const newTask = {
       id: Math.random(),
       content: newTaskText,
       isConcluded: false,
-    }]); 
+    };
 
+    onAddTask(newTask);
     setNewTaskText('');
   }
 
   function handleTaskTextInvalid(event: React.InvalidEvent<HTMLInputElement>) {
-    event.target.setCustomValidity('Digite uma tarefa')
+    event.target.setCustomValidity('Digite uma tarefa');
   }
 
   function handleTaskTextChange(event: React.ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity('');
     setNewTaskText(event.target.value);
   }
-
 
   return (
     <StyleTaskInput>
@@ -59,7 +40,7 @@ export function TaskInput() {
           onChange={handleTaskTextChange}
           onInvalid={handleTaskTextInvalid}
           required
-          />
+        />
         <button type="submit">Criar +</button>
       </form>
     </StyleTaskInput>

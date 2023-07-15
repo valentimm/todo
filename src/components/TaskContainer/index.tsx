@@ -1,14 +1,14 @@
 import { Task } from "../Task";
 import { StyleTaskContainer } from "./style";
 
-interface Task {
+interface TaskItem {
   id: number;
   content: string;
   isConcluded: boolean;
 }
 
 interface TaskContainerProps {
-  tasks: Task[];
+  tasks: TaskItem[];
   onDeleteTask: (id: number) => void;
   onToggleTaskStatus: (id: number) => void;
 }
@@ -21,20 +21,23 @@ export function TaskContainer({ tasks, onDeleteTask, onToggleTaskStatus }: TaskC
         <h1 id="concluded">Concluídas<a>{tasks.filter(task => task.isConcluded).length} de {tasks.length}</a></h1>
       </header>
       <main>
-        {tasks.length == 0 &&
-        <div>
-          <img src="clipboard.svg" alt="clipboard" />
-          <h1>Você ainda não tem tarefas cadastradas</h1>
-          <h2>Crie tarefas e organize seus itens a fazer</h2>
-        </div>
-        }
+        {tasks.length === 0 && (
+          <div>
+            <img src="clipboard.svg" alt="clipboard" />
+            <h1>Você ainda não tem tarefas cadastradas</h1>
+            <h2>Crie tarefas e organize seus itens a fazer</h2>
+          </div>
+        )}
 
         {tasks.map(task => (
           <Task
             key={task.id}
-            {...task}
+            id={task.id}
+            content={task.content}
+            isConcluded={task.isConcluded}
             onDeleteTask={onDeleteTask}
-            onToggleTaskStatus={onToggleTaskStatus} />
+            onToggleTaskStatus={onToggleTaskStatus}
+          />
         ))}
       </main>
     </StyleTaskContainer>
