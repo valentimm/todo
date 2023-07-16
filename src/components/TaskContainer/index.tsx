@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import Confetti from 'react-confetti';
 import { Task } from "../Task";
 import { StyleTaskContainer } from "./style";
 
@@ -14,6 +16,17 @@ interface TaskContainerProps {
 }
 
 export function TaskContainer({ tasks, onDeleteTask, onToggleTaskStatus }: TaskContainerProps) {
+  const [isExploding, setIsExploding] = useState(false);
+
+  useEffect(() => {
+    if (tasks.filter(task => task.isConcluded).length === tasks.length  && tasks.length > 0) {
+      setIsExploding(true);
+      setTimeout(() => {
+        setIsExploding(false);
+      }, 4000);
+    }
+  }, [tasks]);
+
   return (
     <StyleTaskContainer>
       <header>
@@ -40,6 +53,13 @@ export function TaskContainer({ tasks, onDeleteTask, onToggleTaskStatus }: TaskC
           />
         ))}
       </main>
+      {isExploding && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          numberOfPieces={222}
+        />
+      )}
     </StyleTaskContainer>
   );
 }
